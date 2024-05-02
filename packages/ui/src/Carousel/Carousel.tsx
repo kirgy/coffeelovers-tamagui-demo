@@ -1,5 +1,5 @@
-import  { useCallback } from 'react'
-import {FlatList  } from 'react-native'
+import { useCallback } from 'react'
+import { FlatList } from 'react-native'
 import { Stack, useWindowDimensions } from '@my/ui'
 
 type CarouselProps = {
@@ -37,7 +37,7 @@ export const Carousel = ({
   if (initialFocusIndex > items.length) {
     initialFocusIndex = items.length
   }
-const { width: containerWidth} = useWindowDimensions()
+  const { width: containerWidth } = useWindowDimensions()
 
   const carouselPaddingX = 2 * 4
 
@@ -64,25 +64,23 @@ const { width: containerWidth} = useWindowDimensions()
     (renderProps: RenderItemProps) => {
       return (
         // <TouchableOpacity key={renderProps.index} style={{}}>
+        <Stack
+          f={1}
+          p={8}
+          width={
+            renderProps.index === 0 || renderProps.index === items.length - 1
+              ? itemWidth + determinedPaddingX
+              : itemWidth
+          }
+        >
           <Stack
-            f={1}
-            p={8}
-            width={
-              renderProps.index === 0 || renderProps.index === items.length - 1
-                ? itemWidth + determinedPaddingX
-                : itemWidth
-            }
+            px={1}
+            ml={renderProps.index === 0 ? Math.floor(determinedPaddingX) : undefined}
+            mr={renderProps.index === items.length - 1 ? Math.floor(determinedPaddingX) : undefined}
           >
-            <Stack
-              px={1}
-              ml={renderProps.index === 0 ? Math.floor(determinedPaddingX) : undefined}
-              mr={
-                renderProps.index === items.length - 1 ? Math.floor(determinedPaddingX) : undefined
-              }
-            >
-              {renderProps.item}
-            </Stack>
+            {renderProps.item}
           </Stack>
+        </Stack>
         // </TouchableOpacity>
       )
     },
@@ -91,7 +89,7 @@ const { width: containerWidth} = useWindowDimensions()
 
   return (
     <FlatList
-    data={items}
+      data={items}
       initialNumToRender={3}
       renderItem={renderItem}
       horizontal={true}

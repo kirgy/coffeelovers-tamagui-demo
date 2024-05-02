@@ -43,18 +43,22 @@ export function HomeScreen() {
             itemsOnScreen={1}
             items={[
               <CoffeeSnippet
+                id="41f2f4ccb3e005249b9d6ee49ffc3b80"
                 name="Columbia"
                 imageUri="https://zekesfirstsecret.s3.eu-west-1.amazonaws.com/public/boonaboona/41f2f4ccb3e005249b9d6ee49ffc3b80.png"
               />,
               <CoffeeSnippet
+                id="41f2f4ccb3e005249b9d6ee49ffc3b80"
                 name="Columbia"
                 imageUri="https://zekesfirstsecret.s3.eu-west-1.amazonaws.com/public/boonaboona/41f2f4ccb3e005249b9d6ee49ffc3b80.png"
               />,
               <CoffeeSnippet
+                id="41f2f4ccb3e005249b9d6ee49ffc3b80"
                 name="Columbia"
                 imageUri="https://zekesfirstsecret.s3.eu-west-1.amazonaws.com/public/boonaboona/41f2f4ccb3e005249b9d6ee49ffc3b80.png"
               />,
               <CoffeeSnippet
+                id="41f2f4ccb3e005249b9d6ee49ffc3b80"
                 name="Columbia"
                 imageUri="https://zekesfirstsecret.s3.eu-west-1.amazonaws.com/public/boonaboona/41f2f4ccb3e005249b9d6ee49ffc3b80.png"
               />,
