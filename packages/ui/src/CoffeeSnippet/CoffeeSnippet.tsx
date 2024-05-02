@@ -1,42 +1,40 @@
-import { H2, Stack, Image, Paragraph } from '@my/ui';
-import { styled } from 'tamagui';
+import { H2, Stack, Image, Paragraph } from '@my/ui'
+import { Button, H3, styled } from 'tamagui'
 
 type CoffeeSnippetComponentProps = {
   imageUri: string
+  name: string
 }
 
-const CoffeeSnippetComponent = ({
-  imageUri
-}: CoffeeSnippetComponentProps) => {
+export const CoffeeSnippet = ({ imageUri, name }: CoffeeSnippetComponentProps) => {
   return (
-    <Stack>
-      <H2>Coffee Snippet</H2>
+    <Stack bw="$1" br="$4">
+      <Stack p="$2" px="$4">
+        <H3>{name}</H3>
+      </Stack>
       <Image
-          source={{
-            uri: imageUri,
-            height: 400,
-          }}
-        />
-      <Paragraph>
-        This is a paragraph about coffee.
-      </Paragraph>
+        source={{
+          uri: imageUri,
+          height: 400,
+        }}
+      />
     </Stack>
-  );
-};
+  )
+}
 
-export const CoffeeSnippet = styled(CoffeeSnippetComponent, {
-  name: 'CoffeeSnippet',
-  variants: {
-    voted: {
-      good: {
-        backgroundColor: 'green',
-      },
-      bad: {
-        backgroundColor: 'red',
-      },
-    },
-  } as const,
-})
+// export const CoffeeSnippet = styled(CoffeeSnippetComponent, {
+//   name: 'CoffeeSnippet',
+//         backgroundColor: "#ff00ff",
+//         variants: {
+//     voted: {
+//       good: {
+//         borderColor: "#ff00ff",
+//       },
+//       bad: {
+//         borderColor: 'red',
+//       },
+//     },
+//   } as const,
+// })
 
-
-export default CoffeeSnippet;
+export default CoffeeSnippet

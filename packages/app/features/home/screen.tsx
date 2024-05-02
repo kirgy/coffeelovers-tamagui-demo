@@ -6,12 +6,12 @@ import {
   Separator,
   Sheet,
   useToastController,
-  XStack,
   YStack,
-  Image,
-  isWeb,
   CoffeeSnippet,
   ScrollView,
+  Carousel,
+  Stack,
+  H2,
 } from '@my/ui'
 import { ChevronDown, ChevronUp } from '@tamagui/lucide-icons'
 import { useState } from 'react'
@@ -25,8 +25,43 @@ export function HomeScreen() {
   return (
     <ScrollView>
       <YStack f={1} jc="center" ai="center" p="$4" gap="$4">
-        <YStack gap="$4" bc="$background">
-          <H1 ta="center">Welcome to Tamagui.</H1>
+        <Stack>
+          <H1 size="$10" ta="center">
+            Coffee Lovers
+          </H1>
+          <Paragraph size="$4" ta="center">
+            For people who take their coffee seriously.
+          </Paragraph>
+        </Stack>
+        <Separator alignSelf="stretch" />
+
+        <Stack f={1}>
+          <H2 ta="left" mx="$4">
+            This week's coffee choices
+          </H2>
+          <Carousel
+            itemsOnScreen={1}
+            items={[
+              <CoffeeSnippet
+                name="Columbia"
+                imageUri="https://zekesfirstsecret.s3.eu-west-1.amazonaws.com/public/boonaboona/41f2f4ccb3e005249b9d6ee49ffc3b80.png"
+              />,
+              <CoffeeSnippet
+                name="Columbia"
+                imageUri="https://zekesfirstsecret.s3.eu-west-1.amazonaws.com/public/boonaboona/41f2f4ccb3e005249b9d6ee49ffc3b80.png"
+              />,
+              <CoffeeSnippet
+                name="Columbia"
+                imageUri="https://zekesfirstsecret.s3.eu-west-1.amazonaws.com/public/boonaboona/41f2f4ccb3e005249b9d6ee49ffc3b80.png"
+              />,
+              <CoffeeSnippet
+                name="Columbia"
+                imageUri="https://zekesfirstsecret.s3.eu-west-1.amazonaws.com/public/boonaboona/41f2f4ccb3e005249b9d6ee49ffc3b80.png"
+              />,
+            ]}
+          />
+        </Stack>
+        {/* <YStack gap="$4" bc="$background">
           <CoffeeSnippet imageUri="https://zekesfirstsecret.s3.eu-west-1.amazonaws.com/public/boonaboona/41f2f4ccb3e005249b9d6ee49ffc3b80.png" />
 
           <Separator />
@@ -51,7 +86,7 @@ export function HomeScreen() {
           <Button {...linkProps}>Link to user</Button>
         </XStack>
 
-        <SheetDemo />
+        <SheetDemo /> */}
       </YStack>
     </ScrollView>
   )
