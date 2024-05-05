@@ -13,6 +13,7 @@ import {
   Stack,
   H2,
   useWindowDimensions,
+  useMedia,
 } from '@my/ui'
 import { ChevronDown, ChevronUp } from '@tamagui/lucide-icons'
 import { getAllCoffees } from 'app/features/coffee/getCoffee'
@@ -27,12 +28,13 @@ export function HomeScreen() {
   })
 
   const coffees = useMemo(() => getAllCoffees(), [])
+  const media = useMedia()
 
   const { width: screenWidth } = useWindowDimensions()
   const carouselPaddingX = screenWidth > maxWidth ? (screenWidth - maxWidth) / 2 + 10 : 10
-  const carouselItemsOnScreen = screenWidth > maxWidth ? 3 : 1
+  const carouselItemsOnScreen = media.xs ? 1 : 3
 
-  console.log({ coffees })
+  console.log({ carouselItemsOnScreen })
   return (
     <ScrollView>
       <YStack f={1} jc="center" gap="$4">
