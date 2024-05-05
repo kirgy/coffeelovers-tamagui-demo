@@ -50,8 +50,13 @@ export const NavDrawer = () => {
               r={0}
               onPress={() => setOpen((x) => !x)}
             />
-            {navs.map(({ name, link }) => (
-              <Anchor href={link} fontStyle="unset" target={link[0] !== '/' ? '_new' : undefined}>
+            {navs.map(({ name, link }, index) => (
+              <Anchor
+                key={index}
+                href={link}
+                fontStyle="unset"
+                target={link[0] !== '/' ? '_new' : undefined}
+              >
                 <Stack
                   backgroundColor="$gray10"
                   px="$4"
