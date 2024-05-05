@@ -12,6 +12,7 @@ import {
 } from '@my/ui'
 import { StarFull, Star, Vote } from '@tamagui/lucide-icons'
 import { getCoffeeByUUID } from 'app/features/coffee/getCoffee'
+import { useRatings, type Rating } from 'app/features/coffee/RatingProvider'
 
 type CoffeeDetailsProps = {
   uuid: string
@@ -23,6 +24,15 @@ export const CoffeeDetails = ({ uuid }: CoffeeDetailsProps) => {
   const { width } = useWindowDimensions()
 
   const handleVote = useCallback(() => {}, [])
+
+  const { getRatingsByUUID } = useRatings()
+
+  // TODO: figure out why typescript is complaining here
+  // @ts-ignore
+  const ratings: Rating[] = getRatingsByUUID(uuid)
+  const ratingsCount = ratings.length
+  const ratingTotal = ratings.reduce((total, rating) => total + rating.rating, 0)
+  const ratingAverage = ratingTotal != null ? Math.ceil(ratingTotal / ratings.length) : null
 
   if (coffee === undefined) {
     return <Spinner />
@@ -43,13 +53,18 @@ export const CoffeeDetails = ({ uuid }: CoffeeDetailsProps) => {
           <YStack>
             <XStack gap="$4">
               <XStack gap={8} ai="center">
-                <StarFull />
-                <StarFull />
-                <Star />
-                <Star />
-                <Star />
+                {ratingAverage !== null &&
+                  Array.from({ length: ratingAverage }).map((_, index) => <StarFull key={index} />)}
+                {ratingAverage !== null &&
+                  Array.from({ length: 5 - ratingAverage }).map((_, index) => <Star key={index} />)}
+                {!ratingAverage &&
+                  Array.from({ length: 5 }).map((_, index) => <Star key={index} opacity={0.5} />)}
               </XStack>
-              <Paragraph size="$1">4 votes</Paragraph>
+              <Paragraph size="$1">
+                {ratingsCount > 0
+                  ? `${ratingsCount} vote${ratingsCount > 1 ? 's' : ''}`
+                  : 'no votes'}
+              </Paragraph>
             </XStack>
           </YStack>
 

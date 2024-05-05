@@ -8,7 +8,8 @@ import { Provider } from 'app/provider'
 import Head from 'next/head'
 import React from 'react'
 import type { SolitoAppProps } from 'solito'
-import { Button, NavDrawer } from '@my/ui'
+import { NavDrawer } from '@my/ui'
+import { RatingProvider } from 'app/features/coffee/RatingProvider'
 
 if (process.env.NODE_ENV === 'production') {
   require('../public/tamagui.css')
@@ -23,9 +24,11 @@ function MyApp({ Component, pageProps }: SolitoAppProps) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <ThemeProvider>
-        <NavDrawer />
+        <RatingProvider>
+          <NavDrawer />
 
-        <Component {...pageProps} />
+          <Component {...pageProps} />
+        </RatingProvider>
       </ThemeProvider>
     </>
   )

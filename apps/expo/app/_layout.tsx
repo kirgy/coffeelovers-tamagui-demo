@@ -3,6 +3,7 @@ import { Provider } from 'app/provider'
 import { useFonts } from 'expo-font'
 import { Stack } from 'expo-router'
 import { useColorScheme } from 'react-native'
+import { RatingProvider } from 'app/features/coffee/RatingProvider'
 
 export default function HomeLayout() {
   const [loaded] = useFonts({
@@ -17,7 +18,9 @@ export default function HomeLayout() {
   return (
     <Provider>
       <ThemeProvider value={scheme === 'dark' ? DarkTheme : DefaultTheme}>
-        <Stack />
+        <RatingProvider>
+          <Stack />
+        </RatingProvider>
       </ThemeProvider>
     </Provider>
   )
