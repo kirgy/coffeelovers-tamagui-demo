@@ -13,7 +13,7 @@ export const CoffeeSnippet = ({ uuid, imageUri, name }: CoffeeSnippetComponentPr
     <Link href={`/coffee/${uuid}`}>
       <Stack bw="$1" br="$4">
         <Stack p="$2" px="$4">
-          <H3>{name}</H3>
+          <H3 numberOfLines={1}>{name}</H3>
         </Stack>
         <Image
           source={{
