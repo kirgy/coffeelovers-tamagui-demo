@@ -14,7 +14,8 @@ import {
   H2,
 } from '@my/ui'
 import { ChevronDown, ChevronUp } from '@tamagui/lucide-icons'
-import { useState } from 'react'
+import { getAllCoffees } from 'app/features/coffee/getCoffee'
+import { useMemo, useState } from 'react'
 import { useLink } from 'solito/link'
 
 export function HomeScreen() {
@@ -22,6 +23,8 @@ export function HomeScreen() {
     href: '/user/nate',
   })
 
+  const coffees = useMemo(() => getAllCoffees(), [])
+  console.log({ coffees })
   return (
     <ScrollView>
       <YStack f={1} jc="center" ai="center" p="$4" gap="$4">
@@ -41,28 +44,9 @@ export function HomeScreen() {
           </H2>
           <Carousel
             itemsOnScreen={1}
-            items={[
-              <CoffeeSnippet
-                id="41f2f4ccb3e005249b9d6ee49ffc3b80"
-                name="Columbia"
-                imageUri="https://zekesfirstsecret.s3.eu-west-1.amazonaws.com/public/boonaboona/41f2f4ccb3e005249b9d6ee49ffc3b80.png"
-              />,
-              <CoffeeSnippet
-                id="41f2f4ccb3e005249b9d6ee49ffc3b80"
-                name="Columbia"
-                imageUri="https://zekesfirstsecret.s3.eu-west-1.amazonaws.com/public/boonaboona/41f2f4ccb3e005249b9d6ee49ffc3b80.png"
-              />,
-              <CoffeeSnippet
-                id="41f2f4ccb3e005249b9d6ee49ffc3b80"
-                name="Columbia"
-                imageUri="https://zekesfirstsecret.s3.eu-west-1.amazonaws.com/public/boonaboona/41f2f4ccb3e005249b9d6ee49ffc3b80.png"
-              />,
-              <CoffeeSnippet
-                id="41f2f4ccb3e005249b9d6ee49ffc3b80"
-                name="Columbia"
-                imageUri="https://zekesfirstsecret.s3.eu-west-1.amazonaws.com/public/boonaboona/41f2f4ccb3e005249b9d6ee49ffc3b80.png"
-              />,
-            ]}
+            items={coffees.map((coffee) => (
+              <CoffeeSnippet uuid={coffee.uuid} name={coffee.title} imageUri={coffee.imageUri} />
+            ))}
           />
         </Stack>
         {/* <YStack gap="$4" bc="$background">

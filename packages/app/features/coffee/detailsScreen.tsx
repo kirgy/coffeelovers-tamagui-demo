@@ -1,23 +1,15 @@
-import { Button, Paragraph, YStack } from '@my/ui'
-import { ChevronLeft } from '@tamagui/lucide-icons'
-import React from 'react'
+import { CoffeeDetails, ScrollView, useWindowDimensions } from '@my/ui'
 import { createParam } from 'solito'
-import { useLink } from 'solito/link'
 
-const { useParam } = createParam<{ id: string }>()
+const { useParam } = createParam<{ uuid: string }>()
 
 export function DetailsScreen() {
-  const [id] = useParam('id')
-  const link = useLink({
-    href: '/',
-  })
+  const [uuid] = useParam('uuid')
+  const { width } = useWindowDimensions()
 
   return (
-    <YStack f={1} jc="center" ai="center" gap="$4">
-      <Paragraph ta="center" fow="700">{`Coffee ID: ${id}`}</Paragraph>
-      <Button {...link} icon={ChevronLeft}>
-        Go Home
-      </Button>
-    </YStack>
+    <ScrollView maxWidth={width}>
+      <CoffeeDetails uuid={uuid} />
+    </ScrollView>
   )
 }
