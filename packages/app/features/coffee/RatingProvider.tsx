@@ -10,15 +10,15 @@ type RatingContextType = {
   ratings: Rating[]
   addRating: (uuid: string, rating: number) => void
   getRatingsByUUID: (uuid: string) => void
-  getMyRatingsByUUID: (uuid: string) => Rating|undefined
+  getMyRatingsByUUID: (uuid: string) => Rating | undefined
 }
 
 const RatingsInitialState: Rating[] = [
-  {
-    uuid: '41f2f4ccb3e005249b9d6ee49ffc3b80',
-    rating: 4,
-    userId: 'not_me',
-  },
+  // {
+  //   uuid: '41f2f4ccb3e005249b9d6ee49ffc3b80',
+  //   rating: 4,
+  //   userId: 'not_me',
+  // },
 ]
 
 const RatingContext = createContext<RatingContextType | undefined>(undefined)
@@ -39,8 +39,8 @@ export const RatingProvider = ({ children }: RatingProviderProps) => {
     return ratings.filter((r) => r.uuid === uuid)
   }
 
-  const getMyRatingsByUUID = (uuid: string): Rating => {
-    return ratings.filter((r) => r.uuid === uuid && r.userId === "my_id")[0]
+  const getMyRatingsByUUID = (uuid: string): Rating | undefined => {
+    return ratings.find((r) => r.uuid === uuid && r.userId === 'my_id')
   }
   return (
     <RatingContext.Provider value={{ ratings, addRating, getRatingsByUUID, getMyRatingsByUUID }}>
