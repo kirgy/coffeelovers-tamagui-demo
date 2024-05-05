@@ -12,11 +12,14 @@ import {
   Carousel,
   Stack,
   H2,
+  useWindowDimensions,
 } from '@my/ui'
 import { ChevronDown, ChevronUp } from '@tamagui/lucide-icons'
 import { getAllCoffees } from 'app/features/coffee/getCoffee'
 import { useMemo, useState } from 'react'
 import { useLink } from 'solito/link'
+
+const maxWidth = 800
 
 export function HomeScreen() {
   const linkProps = useLink({
@@ -24,11 +27,16 @@ export function HomeScreen() {
   })
 
   const coffees = useMemo(() => getAllCoffees(), [])
+
+  const { width: screenWidth } = useWindowDimensions()
+  const carouselPaddingX = screenWidth > maxWidth ? (screenWidth - maxWidth) / 2 + 10 : 10
+  const carouselItemsOnScreen = screenWidth > maxWidth ? 3 : 1
+
   console.log({ coffees })
   return (
     <ScrollView>
-      <YStack f={1} jc="center" ai="center" p="$4" gap="$4">
-        <Stack>
+      <YStack f={1} jc="center" gap="$4">
+        <Stack maw={maxWidth} alignSelf="center" p="$4">
           <H1 size="$10" ta="center">
             Coffee Lovers
           </H1>
@@ -36,17 +44,17 @@ export function HomeScreen() {
             For people who take their coffee seriously.
           </Paragraph>
         </Stack>
-        <Separator alignSelf="stretch" />
-
+        <Stack px="$4" maw={maxWidth} alignSelf="center" w="100%">
+          <Separator alignSelf="stretch" />
+          <H2 ta="left">This week's coffee choices</H2>
+        </Stack>
         <Stack f={1}>
-          <H2 ta="left" mx="$4">
-            This week's coffee choices
-          </H2>
           <Carousel
-            itemsOnScreen={1}
+            itemsOnScreen={carouselItemsOnScreen}
             items={coffees.map((coffee) => (
               <CoffeeSnippet uuid={coffee.uuid} name={coffee.title} imageUri={coffee.imageUri} />
             ))}
+            paddingX={carouselPaddingX}
           />
         </Stack>
         {/* <YStack gap="$4" bc="$background">

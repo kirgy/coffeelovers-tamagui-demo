@@ -12,7 +12,8 @@ type CarouselProps = {
   paddingX?: number
 }
 
-const CAROUSEL_FRICTION = 0.91
+const carouselFriction = 0.91
+const maxScreenWidth = 800;
 
 const getSnapToOffsets = (
   count: number,
@@ -37,7 +38,8 @@ export const Carousel = ({
   if (initialFocusIndex > items.length) {
     initialFocusIndex = items.length
   }
-  const { width: containerWidth } = useWindowDimensions()
+  const { width: screenWidth } = useWindowDimensions()
+  const containerWidth = screenWidth;
 
   const carouselPaddingX = 2 * 4
 
@@ -102,7 +104,7 @@ export const Carousel = ({
       }
       showsHorizontalScrollIndicator={false}
       contentOffset={{ x: initialOffset, y: 0 }}
-      decelerationRate={CAROUSEL_FRICTION}
+      decelerationRate={carouselFriction}
       style={{
         width: containerWidth,
       }}
