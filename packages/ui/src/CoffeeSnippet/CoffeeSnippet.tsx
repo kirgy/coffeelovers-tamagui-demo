@@ -9,7 +9,6 @@ type CoffeeSnippetComponentProps = {
 }
 
 export const CoffeeSnippet = ({ uuid, imageUri, name }: CoffeeSnippetComponentProps) => {
-  console.log({imageUri, uuid})
   return (
     <Link href={`/coffee/${uuid}`}>
       <Stack bw="$1" br="$4">
