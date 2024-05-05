@@ -34,7 +34,6 @@ export function HomeScreen() {
   const carouselPaddingX = screenWidth > maxWidth ? (screenWidth - maxWidth) / 2 + 10 : 10
   const carouselItemsOnScreen = media.xs ? 1 : 3
 
-  console.log({ carouselItemsOnScreen })
   return (
     <ScrollView>
       <YStack f={1} jc="center" gap="$4">
