@@ -13,17 +13,21 @@ import {
 import { StarFull, Star, Vote } from '@tamagui/lucide-icons'
 import { getCoffeeByUUID } from 'app/features/coffee/getCoffee'
 import { useRatings, type Rating } from 'app/features/coffee/RatingProvider'
+import { useRouter } from 'solito/router'
 
 type CoffeeDetailsProps = {
   uuid: string
 }
 
 export const CoffeeDetails = ({ uuid }: CoffeeDetailsProps) => {
+  const { push } = useRouter()
   const coffee = getCoffeeByUUID(uuid)
 
   const { width } = useWindowDimensions()
 
-  const handleVote = useCallback(() => {}, [])
+  const handleVote = useCallback(() => {
+    push(`/rate/${uuid}`)
+  }, [push, uuid])
 
   const { getRatingsByUUID } = useRatings()
 
