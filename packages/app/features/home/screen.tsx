@@ -39,7 +39,7 @@ export function HomeScreen() {
       <YStack f={1} jc="center" gap="$4">
         <Stack maw={maxWidth} alignSelf="center" p="$4">
           <H1 size="$10" ta="center">
-            Coffee Lovers
+            #cop-coffee-lovers
           </H1>
           <Paragraph size="$4" ta="center">
             For people who take their coffee seriously.
