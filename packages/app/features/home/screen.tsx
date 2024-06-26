@@ -13,6 +13,7 @@ import {
   useMedia,
 } from '@my/ui'
 import { getAllCoffees } from 'app/features/coffee/getCoffee'
+import Score from 'app/features/skia/Score'
 import { useMemo } from 'react'
 
 const maxWidth = 800
@@ -28,6 +29,7 @@ export const HomeScreen = () => {
   return (
     <ScrollView>
       <YStack f={1} jc="center" gap="$4">
+        <Score />
         <Stack maw={maxWidth} alignSelf="center" p="$4">
           <H1 size="$9" $gtXs={{ size: '$10' }} ta="center">
             #cop-coffee-lovers
